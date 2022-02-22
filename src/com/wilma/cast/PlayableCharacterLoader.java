@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PlayableCharacterLoader {
     private Path dataFilePath;
@@ -13,8 +15,8 @@ public class PlayableCharacterLoader {
         this.dataFilePath = Path.of(dataFilePath);
     }
 
-    public List<PlayableCharacter> load() throws IOException {
-        List<PlayableCharacter> result = new ArrayList<>();
+    public Map<Integer, PlayableCharacter> load() throws IOException {
+        Map<Integer, PlayableCharacter> result = new HashMap<>();
 
         Files.lines(dataFilePath).forEach(line -> {
             String[] tokens = line.split(",");
@@ -30,7 +32,7 @@ public class PlayableCharacterLoader {
             int skill = Integer.parseInt(tokens[7]);
             String description = tokens[8];
 
-            result.add(new PlayableCharacter(id, name, catchPhrase, education,
+            result.put(id, new PlayableCharacter(id, name, catchPhrase, education,
                     isCharismatic, luck, skill, description));
         });
         return result;
