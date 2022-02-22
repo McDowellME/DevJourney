@@ -3,18 +3,20 @@ package com.wilma.routes;
 import java.util.HashMap;
 import java.util.Map;
 
-class RouteInfo {
-    // TODO: 2/21/2022 -> use method to populate these from CSV
+public class RouteInfo {
+    public Map<Integer,RouteNode> nodeMap = new HashMap<>();
     public Map<Integer,String> idMap;
     public Map<Integer,int[]> childrenMap;
-    public Map<Integer,RouteNode> nodeMap = new HashMap<>();
+    public Map<Integer,String> routeKeyMap;
 
     public RouteInfo() {
-        // TODO: 2/21/2022 -> call csv method 
+        this.idMap = RouteData.idMap;
+        this.childrenMap = RouteData.childrenMap;
+        this.routeKeyMap = RouteData.routeKeyMap;
         buildGraph();
     }
 
-    // creates a map of: id -> RouteNode, from id -> String map
+    // creates a map of: id -> DecisionNode, from id -> String map
     private void buildGraph() {
         // iterate through id -> String map
         for (var entry : idMap.entrySet()) {
@@ -24,6 +26,7 @@ class RouteInfo {
             nodeMap.put(id, node);
         }
         addChildrenNodes();
+        addRouteKeys();
     }
 
     // adds child relationships to existing nodes in map above
@@ -39,5 +42,18 @@ class RouteInfo {
                 parentNode.addChild(childNode);
             }
         }
+    }
+
+    private void addRouteKeys() {
+        for (var entry : routeKeyMap.entrySet()) {
+            int id = entry.getKey();
+            String routeKey = entry.getValue();
+            RouteNode node = nodeMap.get(id);
+            node.routeKey = routeKey;
+        }
+    }
+
+    public RouteNode getStartNode() {
+        return nodeMap.get(1);
     }
 }
