@@ -1,33 +1,36 @@
 package com.wilma.routes;
 
+import com.wilma.cast.PlayableCharacter;
+
 import java.util.Map;
 import java.util.function.BiFunction;
 
 public class RouteFactor {
-    private static Map<String, BiFunction<Integer,Integer,Boolean>> ops =
+    private static final Map<String, BiFunction<Integer,Integer,Boolean>> ops =
             Map.of("<", (a, b) -> a < b, ">", (a, b) -> a > b);
 
-    public static boolean decipherKey(Character character, RouteNode node) {
-        // C>5
+    public static boolean decipherKey(PlayableCharacter character, RouteNode node) {
+        // C:>:5
         String routeKey = node.getRouteKey();
-        String[] splitKey = routeKey.split("");
-        String attribute = splitKey[0];
-        String operator = splitKey[1];
-        int num = Integer.parseInt(splitKey[2]);
-        int field = 0;
+        String[] tokens = routeKey.split(":");
+        String attribute = tokens[0];
+        String operator = tokens[1];
+        int num = Integer.parseInt(tokens[2]);
 
-//        switch (attribute) {
-//            case "C":
-//                field = character.confidence;
-//                break;
-//            case "E":
-//                field = character.education;
-//        }
+        if ("C".equals(attribute)) {
+            // pass
+        } else if ("L".equals(attribute)) {
+            // pass
+        } else if ("S".equals(attribute)) {
+            // pass
+        } else if ("E".equals(attribute)) {
+            // pass
+        }
 
-        return isSuccessful(operator, field, num);
+        return false;
     }
 
-    public static boolean isSuccessful(String operator, int field, int num) {
+    public static boolean passedAttrCheck(String operator, int field, int num) {
         boolean result = false;
         if (ops.containsKey(operator)) {
             result = ops.get(operator).apply(field, num);
@@ -35,16 +38,3 @@ public class RouteFactor {
         return result;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -49,7 +49,7 @@ public class RouteInfo {
             int id = entry.getKey();
             String routeKey = entry.getValue();
             RouteNode node = nodeMap.get(id);
-            node.routeKey = routeKey;
+            node.setRouteKey(routeKey);
         }
     }
 
