@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class PlayableCharacterLoaderTest {
@@ -11,14 +13,14 @@ public class PlayableCharacterLoaderTest {
     @Test
     public void load_ShouldReturnPopulatedList() throws IOException {
         PlayableCharacterLoader pcLoader = new PlayableCharacterLoader("data/pccharacter-data.csv");
-        List<PlayableCharacter> pchars = pcLoader.load();
+        Map<Integer, PlayableCharacter> pchars = pcLoader.load();
 
         assertEquals(1, pchars.size());
 
         //id, name, catchPhrase, education,
         //                    isCharismatic, luck, skill, description
 
-        PlayableCharacter pchar0 = pchars.get(0);
+        PlayableCharacter pchar0 = pchars.get(10);
         assertEquals(10, pchar0.getId());
         assertEquals("Melinda", pchar0.getName());
         assertEquals("Life's rough", pchar0.getCatchPhrase());

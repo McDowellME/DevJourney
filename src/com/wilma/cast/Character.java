@@ -14,7 +14,9 @@ public abstract class Character {
         setCatchPhrase(catchphrase);
     }
 
-    public abstract void speak();
+    public String speak() {
+        return "\"" + getCatchPhrase() + "\"";
+    }
 
     public abstract String introduction();
 

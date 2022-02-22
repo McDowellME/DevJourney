@@ -25,11 +25,6 @@ public class PlayableCharacter extends Character{
     }
 
     @Override
-    public void speak() {
-
-    }
-
-    @Override
     public String introduction() {
         return getName() + ": \n"
                 + "\"" + getCatchPhrase() + "\"" + "\n"
@@ -85,5 +80,4 @@ public class PlayableCharacter extends Character{
         this.description = description;
     }
 
-    // TODO: toString
 }
