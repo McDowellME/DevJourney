@@ -20,10 +20,6 @@ public class NonPlayableCharacter extends Character{
     }
 
     @Override
-    public void speak() {
-
-    }
-    @Override
     public String introduction() {
         return "You've met " + getName() + ", " + getRole() + ".";
     }
