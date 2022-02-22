@@ -7,11 +7,14 @@ import com.wilma.routes.RouteInfo;
 import com.wilma.routes.RouteNode;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
     private final RouteInfo routeInfo = new RouteInfo();
     private final Scanner scanner = new Scanner(System.in);
+    List<PlayableCharacter> pcList;
     PlayableCharacter player;
 
     public void execute() {
@@ -25,7 +28,16 @@ public class Game {
         PlayableCharacterLoader pcl =
                 new PlayableCharacterLoader("data/pccharacter-data.csv");
         try {
-            player = pcl.load().get(0);
+            pcList = pcl.load();
+
+            for (int i = 0; i < pcList.size(); i++) {
+                pcList.get(i).introduction();
+            }
+
+            System.out.println("Choose your character:");
+            int input = scanner.nextInt();
+            player = pcl.load().get(input);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

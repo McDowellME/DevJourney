@@ -13,14 +13,14 @@ public class PlayableCharacterLoaderTest {
     @Test
     public void load_ShouldReturnPopulatedList() throws IOException {
         PlayableCharacterLoader pcLoader = new PlayableCharacterLoader("data/pccharacter-data.csv");
-        Map<Integer, PlayableCharacter> pchars = pcLoader.load();
+        List<PlayableCharacter> pchars = pcLoader.load();
 
         assertEquals(1, pchars.size());
 
         //id, name, catchPhrase, education,
         //                    isCharismatic, luck, skill, description
 
-        PlayableCharacter pchar0 = pchars.get(10);
+        PlayableCharacter pchar0 = pchars.get(0);
         assertEquals(10, pchar0.getId());
         assertEquals("Melinda", pchar0.getName());
         assertEquals("Life's rough", pchar0.getCatchPhrase());
