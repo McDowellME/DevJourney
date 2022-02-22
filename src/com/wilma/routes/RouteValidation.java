@@ -17,18 +17,29 @@ public class RouteValidation {
     public static boolean decipherKey(PlayableCharacter character, RouteNode node) {
         // C:>:5, E:=:C
         String routeKey = node.getRouteKey();
-        String[] tokens = routeKey.split(":");
-        String attribute = tokens[0];
+        String[] tokens = routeKey.split(", ");
+
+        for (String token : tokens) {
+            if (!validateToken(token, character)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean validateToken(String token, PlayableCharacter character) {
+        String[] innerTokens = token.split(":");
+        String attribute = innerTokens[0];
 
         switch (attribute) {
             case "C":
                 return character.isCharismatic();
             case "L":
-                return luckCheck(tokens, character);
+                return luckCheck(innerTokens, character);
             case "S":
-                return skillCheck(tokens, character);
+                return skillCheck(innerTokens, character);
             case "E":
-                return educationCheck(tokens, character);
+                return educationCheck(innerTokens, character);
             default:
                 return false;
         }
