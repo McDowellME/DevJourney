@@ -2,7 +2,7 @@ package com.wilma.controller;
 
 import com.wilma.cast.PlayableCharacter;
 import com.wilma.cast.PlayableCharacterLoader;
-import com.wilma.routes.RouteFactor;
+import com.wilma.routes.RouteValidation;
 import com.wilma.routes.RouteInfo;
 import com.wilma.routes.RouteNode;
 
@@ -38,7 +38,7 @@ public class Game {
             // check for character link
             if (curNode.getRouteKey() != null) {
                 boolean passedAttrCheck =
-                        RouteFactor.decipherKey(player, curNode);
+                        RouteValidation.decipherKey(player, curNode);
                 curNode = passedAttrCheck ?
                         curNode.getChildren().get(1) :
                         curNode.getChildren().get(0);

@@ -16,9 +16,7 @@ public class RouteInfo {
         buildGraph();
     }
 
-    // creates a map of: id -> DecisionNode, from id -> String map
     private void buildGraph() {
-        // iterate through id -> String map
         for (var entry : idMap.entrySet()) {
             int id = entry.getKey();
             String message = entry.getValue();
@@ -29,9 +27,7 @@ public class RouteInfo {
         addRouteKeys();
     }
 
-    // adds child relationships to existing nodes in map above
     private void addChildrenNodes() {
-        // iterate through id -> childIds map
         for (var entry : childrenMap.entrySet()) {
             int id = entry.getKey();
             int[] childIds = entry.getValue();
