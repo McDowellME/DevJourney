@@ -38,4 +38,8 @@ public class RouteNode {
     public String getRouteKey() {
         return this.routeKey;
     }
+
+    public void setRouteKey(String routeKey) {
+        this.routeKey = routeKey;
+    }
 }
