@@ -15,8 +15,8 @@ public class PlayableCharacterLoader {
         this.dataFilePath = Path.of(dataFilePath);
     }
 
-    public Map<Integer, PlayableCharacter> load() throws IOException {
-        Map<Integer, PlayableCharacter> result = new HashMap<>();
+    public List<PlayableCharacter> load() throws IOException {
+        List<PlayableCharacter> result = new ArrayList<>();
 
         Files.lines(dataFilePath).forEach(line -> {
             String[] tokens = line.split(",");
@@ -32,7 +32,7 @@ public class PlayableCharacterLoader {
             int skill = Integer.parseInt(tokens[7]);
             String description = tokens[8];
 
-            result.put(id, new PlayableCharacter(id, name, catchPhrase, education,
+            result.add(new PlayableCharacter(id, name, catchPhrase, education,
                     isCharismatic, luck, skill, description));
         });
         return result;
