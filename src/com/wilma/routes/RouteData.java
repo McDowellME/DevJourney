@@ -51,6 +51,6 @@ class RouteData {
 
     static {
         routeKeyMap = new HashMap<>();
-        routeKeyMap.put(8, "C>5");
+        routeKeyMap.put(8, "C:>:5");
     }
 }
