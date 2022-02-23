@@ -1,5 +1,9 @@
 package com.wilma.routes;
 
+import com.wilma.cast.NonPlayableCharacter;
+import com.wilma.cast.NonPlayableCharacterLoader;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +11,8 @@ class RouteData {
     public static Map<Integer,String> idMap;
     public static Map<Integer,int[]> childrenMap;
     public static Map<Integer,String> routeKeyMap;
+    public static Map<Integer,NonPlayableCharacter> npcMap;
+    public static Map<Integer,int[]> npcConnectionMap;
 
     static {
         idMap = new HashMap<>();
@@ -51,5 +57,21 @@ class RouteData {
     static {
         routeKeyMap = new HashMap<>();
         routeKeyMap.put(8, "C:=:T");
+    }
+
+    static {
+        NonPlayableCharacterLoader npcLoader =
+                new NonPlayableCharacterLoader("data/npccharacter-data.csv");
+        try {
+            npcMap = npcLoader.load();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static {
+        npcConnectionMap = new HashMap<>();
+        npcConnectionMap.put(1, new int[] {13});
     }
 }
