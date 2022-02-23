@@ -33,17 +33,16 @@ public class RouteNode {
         children.add(child);
     }
 
-    public void displayRouteChoices() {
-        int choiceNum = 0;
+    public List<String> displayRouteChoices() {
+        List<String> choices = new ArrayList<>();
         for (RouteNode child : children) {
-            System.out.print("[" + choiceNum + "] " + child.getMessage() + " | ");
-            choiceNum++;
+            choices.add(child.getMessage());
         }
-        System.out.println();
+        return choices;
     }
 
-    public void displayChoice() {
-        System.out.println(children.get(0).getMessage());
+    public String displayChoice() {
+        return children.get(0).getMessage();
     }
 
     public String getRouteKey() {
