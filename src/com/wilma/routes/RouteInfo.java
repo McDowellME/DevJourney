@@ -1,9 +1,6 @@
 package com.wilma.routes;
 
 import com.wilma.cast.NonPlayableCharacter;
-import com.wilma.cast.NonPlayableCharacterLoader;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,22 +10,14 @@ public class RouteInfo {
     public Map<Integer,int[]> childrenMap;
     public Map<Integer,String> routeKeyMap;
     public Map<Integer, NonPlayableCharacter> npcMap;
+    public Map<Integer,int[]> npcConnectionMap;
 
     public RouteInfo() {
         this.idMap = RouteData.idMap;
         this.childrenMap = RouteData.childrenMap;
         this.routeKeyMap = RouteData.routeKeyMap;
-
-        NonPlayableCharacterLoader npcLoader =
-                new NonPlayableCharacterLoader("data/npccharacter-data.csv");
-
-        try {
-            npcMap = npcLoader.load();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        this.npcMap = RouteData.npcMap;
+        this.npcConnectionMap = RouteData.npcConnectionMap;
         buildGraph();
     }
 
@@ -41,6 +30,7 @@ public class RouteInfo {
         }
         addChildrenNodes();
         addRouteKeys();
+        addNPCs();
     }
 
     private void addChildrenNodes() {
@@ -62,6 +52,18 @@ public class RouteInfo {
             String routeKey = entry.getValue();
             RouteNode node = nodeMap.get(id);
             node.setRouteKey(routeKey);
+        }
+    }
+
+    private void addNPCs() {
+        for (var entry : npcConnectionMap.entrySet()) {
+            int id = entry.getKey();
+            int[] connectedNodes = entry.getValue();
+            NonPlayableCharacter npc = npcMap.get(id);
+
+            for (int connectedNode : connectedNodes) {
+                nodeMap.get(connectedNode).addNPC(npc);
+            }
         }
     }
 
