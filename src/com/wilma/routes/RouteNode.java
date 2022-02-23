@@ -17,6 +17,10 @@ public class RouteNode {
         this.message = message;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -36,6 +40,10 @@ public class RouteNode {
             choiceNum++;
         }
         System.out.println();
+    }
+
+    public void displayChoice() {
+        System.out.println(children.get(0).getMessage());
     }
 
     public String getRouteKey() {

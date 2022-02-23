@@ -1,7 +1,10 @@
 package com.wilma.routes;
 
 import com.wilma.cast.NonPlayableCharacter;
+import com.wilma.cast.PlayableCharacter;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RouteInfo {
@@ -11,6 +14,8 @@ public class RouteInfo {
     public Map<Integer,String> routeKeyMap;
     public Map<Integer, NonPlayableCharacter> npcMap;
     public Map<Integer,int[]> npcConnectionMap;
+    public Map<Integer, PlayableCharacter> pcMap;
+    public List<PlayableCharacter> pcList;
 
     public RouteInfo() {
         this.idMap = RouteData.idMap;
@@ -18,22 +23,27 @@ public class RouteInfo {
         this.routeKeyMap = RouteData.routeKeyMap;
         this.npcMap = RouteData.npcMap;
         this.npcConnectionMap = RouteData.npcConnectionMap;
+        this.pcList = RouteData.pcList;
         buildGraph();
     }
 
     private void buildGraph() {
+        createRouteNodes();
+        addChildNodes();
+        addRouteKeys();
+        addNPCs();
+    }
+
+    private void createRouteNodes() {
         for (var entry : idMap.entrySet()) {
             int id = entry.getKey();
             String message = entry.getValue();
             RouteNode node = new RouteNode(id, message);
             nodeMap.put(id, node);
         }
-        addChildrenNodes();
-        addRouteKeys();
-        addNPCs();
     }
 
-    private void addChildrenNodes() {
+    private void addChildNodes() {
         for (var entry : childrenMap.entrySet()) {
             int id = entry.getKey();
             int[] childIds = entry.getValue();
