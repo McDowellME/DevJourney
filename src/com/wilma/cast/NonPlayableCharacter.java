@@ -8,12 +8,12 @@ public class NonPlayableCharacter extends Character{
     NonPlayableCharacter() {
     }
 
-    NonPlayableCharacter(int id, String name, String catchphrase) {
-        super(id, name, catchphrase);
+    NonPlayableCharacter(int id, String name, String catchphrase, String textFile) {
+        super(id, name, catchphrase, textFile);
     }
 
-    NonPlayableCharacter(int id, String name, String catchphrase, String dialogue, String role, int event) {
-        this(id, name, catchphrase);
+    NonPlayableCharacter(int id, String name, String catchphrase, String textFile, String dialogue, String role, int event) {
+        this(id, name, catchphrase, textFile);
         setDialogue(dialogue);
         setRole(role);
         setEvent(event);

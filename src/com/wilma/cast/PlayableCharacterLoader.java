@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayableCharacterLoader {
-    private Path dataFilePath;
+    private final Path dataFilePath;
 
     public PlayableCharacterLoader(String dataFilePath) {
         this.dataFilePath = Path.of(dataFilePath);
@@ -31,8 +31,9 @@ public class PlayableCharacterLoader {
             int luck = Integer.parseInt(tokens[6]);
             int skill = Integer.parseInt(tokens[7]);
             String description = tokens[8];
+            String textFile = tokens[9];
 
-            result.add(new PlayableCharacter(id, name, catchPhrase, education,
+            result.add(new PlayableCharacter(id, name, catchPhrase, textFile, education,
                     isCharismatic, luck, skill, description));
         });
         return result;

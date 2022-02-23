@@ -8,6 +8,8 @@ import com.wilma.routes.RouteInfo;
 import com.wilma.routes.RouteNode;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -34,11 +36,22 @@ public class Game {
         }
     }
 
+    public static void readTextFile(String resourceFilePath) {
+        try {
+            String image = Files.readString(Path.of(resourceFilePath));
+            System.out.println(image);
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
     private void selectCharacter() {
         int characterIdx = 0;
 
         for (PlayableCharacter character : pcList) {
-            // character.showImage()
+            readTextFile(character.getTextFile());
+            System.out.println();
             System.out.println("[" + characterIdx + "] " + character.introduction() + "\n");
             characterIdx++;
         }
@@ -65,6 +78,7 @@ public class Game {
         while (true) {
             if (curNode.hasNPCs()) {
                 for (NonPlayableCharacter npc : curNode.getNPCs()) {
+                    readTextFile(npc.getTextFile());
                     System.out.println(npc.introduction());
                 }
             }
