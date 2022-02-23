@@ -10,13 +10,13 @@ public class PlayableCharacter extends Character {
     PlayableCharacter() {
     }
 
-    PlayableCharacter(int id, String name, String catchphrase) {
-        super(id, name, catchphrase);
+    PlayableCharacter(int id, String name, String catchphrase, String textFile) {
+        super(id, name, catchphrase, textFile);
     }
 
-    public PlayableCharacter(int id, String name, String catchphrase, Education education,
+    public PlayableCharacter(int id, String name, String catchphrase, String textFile, Education education,
                       boolean isCharismatic, int luck, int skill, String description) {
-        this(id, name, catchphrase);
+        this(id, name, catchphrase, textFile);
         setEducation(education);
         setCharismatic(isCharismatic);
         setLuck(luck);
@@ -28,7 +28,7 @@ public class PlayableCharacter extends Character {
     public String introduction() {
         return getName() + ": \n"
                 + "\"" + getCatchPhrase() + "\"" + "\n"
-                + getDescription() + "\n"
+                //+ getDescription() + "\n"
                 + "Player Attributes:" + "\n"
                 + "Education - " + getEducation() + "\n"
                 + "Charismatic - " + isCharismatic() + "\n"

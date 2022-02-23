@@ -24,10 +24,12 @@ public class RouteValidationTest {
     public void setUp() {
         p1 = new PlayableCharacter(
                 1, "Lyle", "catchphrase",
+                "resources/Francis.txt",
                 Education.COLLEGE_DEGREE, true,
                 2, 5, "description");
         p2 = new PlayableCharacter(
                 2, "Jay", "catchphrase",
+                "resources/Francis.txt",
                 Education.BOOTCAMP, false,
                 8, 7, "description");
 

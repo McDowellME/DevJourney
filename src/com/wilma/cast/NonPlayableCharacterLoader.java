@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class NonPlayableCharacterLoader {
-    private Path dataFilePath;
+    private final Path dataFilePath;
 
     public NonPlayableCharacterLoader(String dataFilePath) {
         this.dataFilePath = Path.of(dataFilePath);
@@ -27,8 +27,9 @@ public class NonPlayableCharacterLoader {
             String dialogue = tokens[4];
             String role = tokens[5];
             int event = Integer.parseInt(tokens[6]);
+            String textFile = tokens[7];
 
-            result.put(id, new NonPlayableCharacter(id, name, catchPhrase, dialogue, role, event));
+            result.put(id, new NonPlayableCharacter(id, name, catchPhrase, textFile, dialogue, role, event));
         });
         return result;
     }
