@@ -4,14 +4,16 @@ public abstract class Character {
     private int id;
     private String name;
     private String catchPhrase;
+    private String textFile;
 
     Character() {
     }
 
-    Character(int id, String name, String catchphrase) {
+    Character(int id, String name, String catchphrase, String textFile) {
         setId(id);
         setName(name);
         setCatchPhrase(catchphrase);
+        setTextFile(textFile);
     }
 
     public String speak() {
@@ -44,4 +46,11 @@ public abstract class Character {
         this.catchPhrase = catchPhrase;
     }
 
+    public String getTextFile() {
+        return textFile;
+    }
+
+    public void setTextFile(String textFile) {
+        this.textFile = textFile;
+    }
 }
