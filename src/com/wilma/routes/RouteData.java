@@ -50,7 +50,7 @@ class RouteData {
         childrenMap.put(1, new int[] {2, 3});
         childrenMap.put(2, new int[] {4,12});
         childrenMap.put(3, new int[] {0});
-        childrenMap.put(4, new int[] {5, 6, 7}); // these could be a choice or just a message?
+        childrenMap.put(4, new int[] {5, 6, 7});
         childrenMap.put(5, new int[] {20, 21});
         childrenMap.put(6, new int[] {22, 23});
         childrenMap.put(7, new int[] {17, 18});
