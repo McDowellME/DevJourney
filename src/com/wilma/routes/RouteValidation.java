@@ -16,7 +16,6 @@ public class RouteValidation {
             Map.of("C", Education.COLLEGE_DEGREE, "B", Education.BOOTCAMP, "S", Education.SELF_TAUGHT);
 
     public static boolean decipherKey(PlayableCharacter character, RouteNode node) {
-        // example C, E:=:C
         String routeKey = node.getRouteKey();
         String[] tokens = routeKey.split(",");
 
@@ -59,7 +58,7 @@ public class RouteValidation {
         String attributeStr = tokens[0];
         String operator = tokens[1];
         int requiredAttrNum = Integer.parseInt(tokens[2]);
-        int characterAttrNum = 0;
+        int characterAttrNum;
 
         switch (attributeStr) {
             case "S":

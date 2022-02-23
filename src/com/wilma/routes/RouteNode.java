@@ -1,13 +1,16 @@
 package com.wilma.routes;
 
+import com.wilma.cast.NonPlayableCharacter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RouteNode {
     private int id;
-    private String message;
+    private final String message;
     private String routeKey;
     private List<RouteNode> children = new ArrayList<>();
+    private List<NonPlayableCharacter> npcs = new ArrayList<>();
 
     public RouteNode(int id, String message) {
         this.id = id;
@@ -41,5 +44,17 @@ public class RouteNode {
 
     public void setRouteKey(String routeKey) {
         this.routeKey = routeKey;
+    }
+
+    public List<NonPlayableCharacter> getNPCs() {
+        return this.npcs;
+    }
+
+    public void addNPC(NonPlayableCharacter npc) {
+        this.npcs.add(npc);
+    }
+
+    public boolean hasNPCs() {
+        return !this.npcs.isEmpty();
     }
 }

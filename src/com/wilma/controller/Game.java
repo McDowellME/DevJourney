@@ -1,5 +1,6 @@
 package com.wilma.controller;
 
+import com.wilma.cast.NonPlayableCharacter;
 import com.wilma.cast.PlayableCharacter;
 import com.wilma.cast.PlayableCharacterLoader;
 import com.wilma.routes.RouteValidation;
@@ -8,7 +9,6 @@ import com.wilma.routes.RouteNode;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -18,36 +18,44 @@ public class Game {
     PlayableCharacter player;
 
     public void execute() {
-        // loadCharacters();
+        loadCharacters();
         createCharacter();
         runGameLoop();
     }
 
-    // character prompt
-    private void createCharacter() {
+    public void loadCharacters() {
         PlayableCharacterLoader pcl =
                 new PlayableCharacterLoader("data/pccharacter-data.csv");
         try {
             pcList = pcl.load();
-
-            for (int i = 0; i < pcList.size(); i++) {
-                pcList.get(i).introduction();
-            }
-
-            System.out.println("Choose your character:");
-            int input = scanner.nextInt();
-            player = pcl.load().get(input);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void createCharacter() {
+        for (PlayableCharacter character : pcList) {
+            System.out.println(character.introduction());
+        }
+
+        System.out.println("Choose your character:");
+        int input = scanner.nextInt();
+        if (isValidInput(input, pcList.size())) {
+            player = pcList.get(input);
+        }
+        System.out.println(player.introduction());
+    }
+
     private void runGameLoop() {
         RouteNode curNode = routeInfo.getStartNode();
 
         while (true) {
-            // check for character link
+            if (curNode.hasNPCs()) {
+                for (NonPlayableCharacter npc : curNode.getNPCs()) {
+                    System.out.println(npc.introduction());
+                }
+            }
             if (curNode.getRouteKey() != null) {
                 boolean passedAttrCheck =
                         RouteValidation.decipherKey(player, curNode);

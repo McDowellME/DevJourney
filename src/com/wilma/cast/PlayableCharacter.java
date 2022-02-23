@@ -36,10 +36,6 @@ public class PlayableCharacter extends Character {
                 + "Coding Skill Level - " + getSkill();
     }
 
-    public void makeChoice() {
-
-    }
-
     public Education getEducation() {
         return education;
     }
@@ -79,5 +75,4 @@ public class PlayableCharacter extends Character {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

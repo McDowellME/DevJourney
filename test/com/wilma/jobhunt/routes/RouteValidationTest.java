@@ -29,7 +29,7 @@ public class RouteValidationTest {
         p2 = new PlayableCharacter(
                 2, "Jay", "catchphrase",
                 Education.BOOTCAMP, false,
-                8, 8, "description");
+                8, 7, "description");
 
         n1 = new RouteNode(1, "message");
         n1.setRouteKey("C");
@@ -38,7 +38,7 @@ public class RouteValidationTest {
         n3 = new RouteNode(3, "message");
         n3.setRouteKey("L:>:5");
         n4 = new RouteNode(4, "message");
-        n4.setRouteKey("S:>:7");
+        n4.setRouteKey("S:>=:7");
         n5 = new RouteNode(5, "message");
         n5.setRouteKey("L:>:5,S:>:5");
         n6 = new RouteNode(5, "message");
@@ -96,7 +96,7 @@ public class RouteValidationTest {
     }
 
     @Test
-    public void decipherKeyWithMultipleEducations_returnsTrue_whenPassedPlayerWithEducation() {
+    public void decipherKeyWithMultipleEducations_returnsTrue_whenPassedPlayerWithOneRequiredEducation() {
         assertTrue(RouteValidation.decipherKey(p1, n6));
     }
 }
