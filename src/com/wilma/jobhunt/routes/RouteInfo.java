@@ -1,4 +1,4 @@
-package com.wilma.routes;
+package com.wilma.jobhunt.routes;
 
 import java.util.HashMap;
 import java.util.Map;

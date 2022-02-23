@@ -1,6 +1,6 @@
-package com.wilma.client;
+package com.wilma.jobhunt.client;
 
-import com.wilma.controller.Game;
+import com.wilma.jobhunt.controller.Game;
 
 public class Main {
 

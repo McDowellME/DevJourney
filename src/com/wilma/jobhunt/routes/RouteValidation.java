@@ -1,7 +1,7 @@
-package com.wilma.routes;
+package com.wilma.jobhunt.routes;
 
-import com.wilma.cast.Education;
-import com.wilma.cast.PlayableCharacter;
+import com.wilma.jobhunt.cast.Education;
+import com.wilma.jobhunt.cast.PlayableCharacter;
 
 import java.util.ArrayList;
 import java.util.List;

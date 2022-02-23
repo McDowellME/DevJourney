@@ -1,10 +1,10 @@
-package com.wilma.controller;
+package com.wilma.jobhunt.controller;
 
-import com.wilma.cast.PlayableCharacter;
-import com.wilma.cast.PlayableCharacterLoader;
-import com.wilma.routes.RouteValidation;
-import com.wilma.routes.RouteInfo;
-import com.wilma.routes.RouteNode;
+import com.wilma.jobhunt.cast.PlayableCharacter;
+import com.wilma.jobhunt.cast.PlayableCharacterLoader;
+import com.wilma.jobhunt.routes.RouteValidation;
+import com.wilma.jobhunt.routes.RouteInfo;
+import com.wilma.jobhunt.routes.RouteNode;
 
 import java.io.IOException;
 import java.util.Scanner;
