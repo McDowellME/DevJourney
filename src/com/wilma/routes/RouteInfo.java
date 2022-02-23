@@ -14,7 +14,6 @@ public class RouteInfo {
     public Map<Integer,String> routeKeyMap;
     public Map<Integer, NonPlayableCharacter> npcMap;
     public Map<Integer,int[]> npcConnectionMap;
-    public Map<Integer, PlayableCharacter> pcMap;
     public List<PlayableCharacter> pcList;
 
     public RouteInfo() {

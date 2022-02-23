@@ -21,7 +21,7 @@ class RouteData {
     static {
         idMap = new HashMap<>();
         idMap.put(1, "Choose your path!");
-        idMap.put(2, "Job Hunt");
+        idMap.put(2, "*** WELCOME TO JOB HUNT! ***");
         idMap.put(4, "Apply for jobs");
         idMap.put(5, "Google");
         idMap.put(6, "Apple");
@@ -62,7 +62,7 @@ class RouteData {
         childrenMap.put(7, new int[] {17, 18});
         childrenMap.put(8, new int[] {10, 11});
         childrenMap.put(9, new int[] {4, 12, 32});
-        childrenMap.put(10, new int[] {1});
+        childrenMap.put(10, new int[] {4, 12, 32});
         childrenMap.put(11, new int[] {4, 12, 32});
         childrenMap.put(12, new int[] {13, 14});
         childrenMap.put(13, new int[] {15, 16});
@@ -81,9 +81,9 @@ class RouteData {
 
     static {
         routeKeyMap = new HashMap<>();
-        routeKeyMap.put(8, "C:=:T");
+        routeKeyMap.put(17, "C:=:T");
         routeKeyMap.put(20, "S:>=:7");
-//        routeKeyMap.put()
+        routeKeyMap.put(22, "L:>=:5");
     }
 
     static {
