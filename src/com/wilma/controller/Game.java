@@ -9,17 +9,18 @@ import com.wilma.routes.RouteNode;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
     private final RouteInfo routeInfo = new RouteInfo();
     private final Scanner scanner = new Scanner(System.in);
-    List<PlayableCharacter> pcList;
-    PlayableCharacter player;
+    private List<PlayableCharacter> pcList = routeInfo.pcList;
+    private PlayableCharacter player;
 
     public void execute() {
         loadCharacters();
-        createCharacter();
+        selectCharacter();
         runGameLoop();
     }
 
@@ -28,23 +29,34 @@ public class Game {
                 new PlayableCharacterLoader("data/pccharacter-data.csv");
         try {
             pcList = pcl.load();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void createCharacter() {
-        for (PlayableCharacter character : pcList) {
-            System.out.println(character.introduction());
-        }
+    private void selectCharacter() {
+        int characterIdx = 0;
 
-        System.out.println("Choose your character:");
-        int input = scanner.nextInt();
-        if (isValidInput(input, pcList.size())) {
-            player = pcList.get(input);
+        for (PlayableCharacter character : pcList) {
+            // character.showImage()
+            System.out.println("[" + characterIdx + "] " + character.introduction() + "\n");
+            characterIdx++;
         }
-        System.out.println(player.introduction());
+        characterIdx = 0;
+        System.out.println("Choose your character:");
+
+        for (PlayableCharacter character : pcList) {
+            System.out.print("[" + characterIdx + "] " + character.getName() + "\t");
+            characterIdx++;
+        }
+        System.out.println();
+        String input = scanner.nextLine();
+
+        if (isValidInput(input, pcList.size())) {
+            player = pcList.get(Integer.parseInt(input));
+        } else {
+            printInvalidInputMsg(pcList.size());
+        }
     }
 
     private void runGameLoop() {
@@ -62,23 +74,52 @@ public class Game {
                 curNode = passedAttrCheck ?
                         curNode.getChildren().get(1) :
                         curNode.getChildren().get(0);
-
                 System.out.println(curNode.getMessage());
+                System.out.println("Enter any key to continue:");
+                scanner.nextLine();
+                System.out.println();
             } else {
-                System.out.println("Please choose from the options below:");
-                curNode.displayRouteChoices();
-                int input = scanner.nextInt();
-
-                if (isValidInput(input, curNode.getChildren().size())) {
-                    curNode = curNode.getChildren().get(input);
+                if (curNode.getChildren().size() == 1) {
+                    System.out.println();
+                    curNode.displayChoice();
+                    System.out.println("Enter any key to continue:");
+                    scanner.nextLine();
+                    System.out.println();
+                    curNode = curNode.getChildren().get(0);
                 } else {
-                    System.out.println("Invalid input");
+                    System.out.println("Please choose from the options below:");
+                    curNode.displayRouteChoices();
+                    String input = scanner.nextLine();
+                    System.out.println();
+                    if (isValidInput(input, curNode.getChildren().size())) {
+                        curNode = curNode.getChildren().get(Integer.parseInt(input));
+                    } else {
+                        printInvalidInputMsg(curNode.getChildren().size());
+                    }
                 }
             }
         }
     }
 
-    private boolean isValidInput(int input, int size) {
+    private static boolean isValidInput(String input, int numChoices) {
+        if (!isNumeric(input)) return false;
+        int num = Integer.parseInt(input);
+        return (num >= 0 && num < numChoices);
+    }
+
+    private static boolean isNumeric(String input) {
+        if (input == null) return false;
+
+        try {
+            Integer num = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return false;
+        }
         return true;
+    }
+
+    private void printInvalidInputMsg(int size) {
+        System.out.println("Invalid input," +
+                " must be a number 0 - " + (size - 1));
     }
 }
