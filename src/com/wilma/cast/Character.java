@@ -43,4 +43,5 @@ public abstract class Character {
     public void setCatchPhrase(String catchPhrase) {
         this.catchPhrase = catchPhrase;
     }
+
 }
