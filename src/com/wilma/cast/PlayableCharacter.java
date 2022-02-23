@@ -1,6 +1,6 @@
 package com.wilma.cast;
 
-public class PlayableCharacter extends Character{
+public class PlayableCharacter extends Character {
     private Education education;
     private boolean isCharismatic;
     private int luck;
@@ -14,7 +14,7 @@ public class PlayableCharacter extends Character{
         super(id, name, catchphrase);
     }
 
-    PlayableCharacter(int id, String name, String catchphrase, Education education,
+    public PlayableCharacter(int id, String name, String catchphrase, Education education,
                       boolean isCharismatic, int luck, int skill, String description) {
         this(id, name, catchphrase);
         setEducation(education);
