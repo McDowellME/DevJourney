@@ -7,6 +7,7 @@ import com.wilma.jobhunt.ending.Ending;
 import com.wilma.routes.RouteValidation;
 import com.wilma.routes.RouteInfo;
 import com.wilma.routes.RouteNode;
+import com.apps.util.Console;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -129,6 +130,7 @@ public class Game {
                     System.out.println();
                     String input = scanner.nextLine();
                     System.out.println();
+                    Console.clear();
 
                     if (isValidInput(input, curNode.getChildren().size())) {
                         curNode = curNode.getChildren().get(Integer.parseInt(input));
@@ -144,6 +146,8 @@ public class Game {
         System.out.println("\nEnter any key to continue:");
         scanner.nextLine();
         System.out.println();
+        Console.clear();
+
     }
 
     private static boolean isValidInput(String input, int numChoices) {
