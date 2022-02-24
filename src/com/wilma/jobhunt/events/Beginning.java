@@ -1,4 +1,4 @@
-package com.wilma.jobhunt.ending;
+package com.wilma.jobhunt.events;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
