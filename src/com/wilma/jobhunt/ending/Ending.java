@@ -55,7 +55,7 @@ public class Ending {
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(
                     new File("resources/alienmessage.wav")));
-            Thread.sleep(700);
+            Thread.sleep(800);
             clip.start();
             Thread.sleep(6000);
         } catch (Exception e) {
