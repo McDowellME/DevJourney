@@ -39,6 +39,7 @@ class RouteData {
         idMap.put(18, "Decline Amazon Interview");
         idMap.put(19, "Apply to jobs again");
         idMap.put(20, "Do Google Interview");
+        idMap.put(21, "You feel the earth shaking underneath you...");
         idMap.put(22, "Do Apple Interview");
         idMap.put(24, "Take the Interview seriously"); //don't remember if we were still giving user the choice to take interview seriously or not. 24 and 25 aren't linked in children map yet.
         idMap.put(25, "Try to make interviewer laugh");
@@ -49,10 +50,11 @@ class RouteData {
         idMap.put(30, "Accept offer");
         idMap.put(31, "Decline offer");
         idMap.put(32, "Go for a walk");
-        idMap.put(33, "Aliens");
         idMap.put(34, "You got the Google interview!");
         idMap.put(35, "You got the Amazon interview!");
         idMap.put(36, "You got the Apple interview!");
+        idMap.put(37, "Restart");
+        idMap.put(38, "Quit");
     }
 
     static {
@@ -74,8 +76,9 @@ class RouteData {
         childrenMap.put(16, new int[] {4, 12, 32});
         childrenMap.put(17, new int[] {28, 29});
         childrenMap.put(20, new int[] {28, 29});
+        childrenMap.put(21, new int[] {38, 37});
         childrenMap.put(22, new int[] {28, 29});
-        childrenMap.put(26, new int[] {33});
+        childrenMap.put(26, new int[] {21});
         childrenMap.put(28, new int[] {4, 12, 32});
         childrenMap.put(29, new int[] {31, 30});
         childrenMap.put(31, new int[] {4, 12, 32});
@@ -83,6 +86,7 @@ class RouteData {
         childrenMap.put(34, new int[] {20, 9});
         childrenMap.put(35, new int[] {17, 9});
         childrenMap.put(36, new int[] {22, 9});
+        childrenMap.put(37, new int[] {2});
     }
 
     static {

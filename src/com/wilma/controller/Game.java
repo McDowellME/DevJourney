@@ -85,6 +85,16 @@ public class Game {
         RouteNode curNode = routeInfo.getStartNode();
 
         while (true) {
+            if (curNode.getId() == 38) return;
+            if (curNode.getId() == 21) {
+                try {
+                    Ending.alienMessage();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                enterAnyKeyToContinue();
+
+            }
             if (curNode.hasNPCs()) {
 
                 for (NonPlayableCharacter npc : curNode.getNPCs()) {
