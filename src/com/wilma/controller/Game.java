@@ -101,6 +101,7 @@ public class Game {
                     readTextFile(npc.getTextFile());
                     System.out.println(npc.introduction());
                 }
+                enterAnyKeyToContinue();
             }
             if (curNode.getRouteKey() != null) {
                 boolean passedAttrCheck =
