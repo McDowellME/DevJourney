@@ -1,4 +1,4 @@
-package com.wilma.jobhunt.ending;
+package com.wilma.jobhunt.events;
 
 import com.apps.util.Console;
 
