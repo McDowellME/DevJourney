@@ -2,12 +2,9 @@ package com.wilma.jobhunt.routes;
 
 import com.wilma.jobhunt.cast.NonPlayableCharacter;
 import com.wilma.jobhunt.cast.NonPlayableCharacterLoader;
-import com.wilma.jobhunt.cast.PlayableCharacter;
-import com.wilma.jobhunt.cast.PlayableCharacterLoader;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 class RouteData {
@@ -16,7 +13,6 @@ class RouteData {
     public static Map<Integer,String> routeKeyMap;
     public static Map<Integer,NonPlayableCharacter> npcMap;
     public static Map<Integer,int[]> npcConnectionMap;
-    public static List<PlayableCharacter> pcList;
 
     static {
         idMap = new HashMap<>();
@@ -113,16 +109,5 @@ class RouteData {
         npcConnectionMap = new HashMap<>();
         npcConnectionMap.put(1, new int[] {13});
         npcConnectionMap.put(3, new int[] {15, 17, 20, 22});
-    }
-
-    static {
-        PlayableCharacterLoader pcLoader =
-                new PlayableCharacterLoader("data/pccharacter-data.csv");
-
-        try {
-            pcList = pcLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -20,8 +20,9 @@ import java.util.Scanner;
 public class Game {
     private final RouteInfo routeInfo = new RouteInfo();
     private final Scanner scanner = new Scanner(System.in);
-    private List<PlayableCharacter> pcList = routeInfo.pcList;
+    private List<PlayableCharacter> pcList;
     private PlayableCharacter player;
+    private static final String PLCHAR_FILE_PATH = "data/pccharacter-data.csv";
     private static final int RESTART_NODE_ID = 37;
     private static final int QUIT_NODE_ID = 38;
     private static final int ALIEN_NODE_ID = 21;
@@ -44,7 +45,7 @@ public class Game {
 
     public void loadCharacters() {
         PlayableCharacterLoader pcl =
-                new PlayableCharacterLoader("data/pccharacter-data.csv");
+                new PlayableCharacterLoader(PLCHAR_FILE_PATH);
         try {
             pcList = pcl.load();
         } catch (IOException e) {
@@ -94,16 +95,9 @@ public class Game {
         RouteNode curNode = routeInfo.getStartNode();
 
         while (true) {
-            if (curNode.getId() == RESTART_NODE_ID) restart();
-            if (curNode.getId() == QUIT_NODE_ID) System.exit(0);
-            if (curNode.getId() == ALIEN_NODE_ID) {
-                try {
-                    Ending.alienMessage();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                enterAnyKeyToContinue();
-            }
+            if (curNode.getId() == RESTART_NODE_ID) restartGame();
+            if (curNode.getId() == QUIT_NODE_ID) exitGame();
+            if (curNode.getId() == ALIEN_NODE_ID) alienEnding();
             if (curNode.hasNPCs()) {
 
                 for (NonPlayableCharacter npc : curNode.getNPCs()) {
@@ -151,9 +145,22 @@ public class Game {
         }
     }
 
-    private static void restart() {
+    private static void restartGame() {
         String[] args = new String[0];
         Main.main(args);
+    }
+
+    private static void exitGame() {
+        System.exit(0);
+    }
+
+    private void alienEnding() {
+        try {
+            Ending.alienMessage();
+        } catch (Exception e) {
+            System.out.println("You have been abducted by aliens");
+        }
+        enterAnyKeyToContinue();
     }
 
     private void enterAnyKeyToContinue() {
@@ -179,7 +186,7 @@ public class Game {
         return true;
     }
 
-    private void printInvalidInputMsg(int size) {
+    private static void printInvalidInputMsg(int size) {
         System.out.println("** Invalid input," +
                 " must be a number 0 - " + (size - 1) + " **");
     }

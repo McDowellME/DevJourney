@@ -1,28 +1,24 @@
 package com.wilma.jobhunt.routes;
 
 import com.wilma.jobhunt.cast.NonPlayableCharacter;
-import com.wilma.jobhunt.cast.PlayableCharacter;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RouteInfo {
-    public Map<Integer,RouteNode> nodeMap = new HashMap<>();
-    public Map<Integer,String> idMap;
+    public Map<Integer,RouteNode> nodeIdMap = new HashMap<>();
+    public Map<Integer,String> messageIdMap;
     public Map<Integer,int[]> childrenMap;
     public Map<Integer,String> routeKeyMap;
-    public Map<Integer, NonPlayableCharacter> npcMap;
+    public Map<Integer, NonPlayableCharacter> npcIdMap;
     public Map<Integer,int[]> npcConnectionMap;
-    public List<PlayableCharacter> pcList;
 
     public RouteInfo() {
-        this.idMap = RouteData.idMap;
+        this.messageIdMap = RouteData.idMap;
         this.childrenMap = RouteData.childrenMap;
         this.routeKeyMap = RouteData.routeKeyMap;
-        this.npcMap = RouteData.npcMap;
+        this.npcIdMap = RouteData.npcMap;
         this.npcConnectionMap = RouteData.npcConnectionMap;
-        this.pcList = RouteData.pcList;
         buildGraph();
     }
 
@@ -34,11 +30,11 @@ public class RouteInfo {
     }
 
     private void createRouteNodes() {
-        for (var entry : idMap.entrySet()) {
+        for (var entry : messageIdMap.entrySet()) {
             int id = entry.getKey();
             String message = entry.getValue();
             RouteNode node = new RouteNode(id, message);
-            nodeMap.put(id, node);
+            nodeIdMap.put(id, node);
         }
     }
 
@@ -46,10 +42,10 @@ public class RouteInfo {
         for (var entry : childrenMap.entrySet()) {
             int id = entry.getKey();
             int[] childIds = entry.getValue();
-            RouteNode parentNode = nodeMap.get(id);
+            RouteNode parentNode = nodeIdMap.get(id);
 
             for (int childId : childIds) {
-                RouteNode childNode = nodeMap.get(childId);
+                RouteNode childNode = nodeIdMap.get(childId);
                 parentNode.addChild(childNode);
             }
         }
@@ -59,7 +55,7 @@ public class RouteInfo {
         for (var entry : routeKeyMap.entrySet()) {
             int id = entry.getKey();
             String routeKey = entry.getValue();
-            RouteNode node = nodeMap.get(id);
+            RouteNode node = nodeIdMap.get(id);
             node.setRouteKey(routeKey);
         }
     }
@@ -68,15 +64,15 @@ public class RouteInfo {
         for (var entry : npcConnectionMap.entrySet()) {
             int id = entry.getKey();
             int[] connectedNodes = entry.getValue();
-            NonPlayableCharacter npc = npcMap.get(id);
+            NonPlayableCharacter npc = npcIdMap.get(id);
 
             for (int connectedNode : connectedNodes) {
-                nodeMap.get(connectedNode).addNPC(npc);
+                nodeIdMap.get(connectedNode).addNPC(npc);
             }
         }
     }
 
     public RouteNode getStartNode() {
-        return nodeMap.get(2);
+        return nodeIdMap.get(2);
     }
 }
