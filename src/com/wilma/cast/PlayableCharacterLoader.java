@@ -28,11 +28,10 @@ public class PlayableCharacterLoader {
             boolean isCharismatic = Boolean.parseBoolean(tokens[5]);
             int luck = Integer.parseInt(tokens[6]);
             int skill = Integer.parseInt(tokens[7]);
-            String description = tokens[8];
-            String textFile = tokens[9];
+            String textFile = tokens[8];
 
             result.add(new PlayableCharacter(id, name, catchPhrase, textFile, education,
-                    isCharismatic, luck, skill, description));
+                    isCharismatic, luck, skill));
         });
         return result;
     }

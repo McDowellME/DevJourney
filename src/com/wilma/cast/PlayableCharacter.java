@@ -5,7 +5,6 @@ public class PlayableCharacter extends Character {
     private boolean isCharismatic;
     private int luck;
     private int skill;
-    private String description;
 
     PlayableCharacter() {
     }
@@ -15,13 +14,12 @@ public class PlayableCharacter extends Character {
     }
 
     public PlayableCharacter(int id, String name, String catchphrase, String textFile, Education education,
-                      boolean isCharismatic, int luck, int skill, String description) {
+                      boolean isCharismatic, int luck, int skill) {
         this(id, name, catchphrase, textFile);
         setEducation(education);
         setCharismatic(isCharismatic);
         setLuck(luck);
         setSkill(skill);
-        setDescription(description);
     }
 
     @Override
@@ -66,13 +64,5 @@ public class PlayableCharacter extends Character {
 
     public void setSkill(int skill) {
         this.skill = skill;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }
