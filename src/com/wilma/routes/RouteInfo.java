@@ -77,6 +77,6 @@ public class RouteInfo {
     }
 
     public RouteNode getStartNode() {
-        return nodeMap.get(1);
+        return nodeMap.get(2);
     }
 }

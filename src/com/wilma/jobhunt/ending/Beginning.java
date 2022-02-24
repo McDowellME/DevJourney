@@ -4,10 +4,10 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
-class Beginning {
+public class Beginning {
 
     //this is will display at the beginning of the game
-    public static void alienMessage() throws InterruptedException {
+    public static void beginningMessage() throws InterruptedException {
 
         String art = " █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████    ▄▄▄█████▓ ▒█████      ▄▄▄██▀▀▀▒█████   ▄▄▄▄       ██░ ██  █    ██  ███▄    █ ▄▄▄█████▓ ▐██▌ \n" +
                 "▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀    ▓  ██▒ ▓▒▒██▒  ██▒      ▒██  ▒██▒  ██▒▓█████▄    ▓██░ ██▒ ██  ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒ ▐██▌ \n" +
@@ -35,7 +35,7 @@ class Beginning {
                     new File("resources/StartSound.wav")));
             Thread.sleep(700);
             clip.start();
-            Thread.sleep(6000);
+            Thread.sleep(7000);
         } catch (Exception e) {
             e.printStackTrace();
         }

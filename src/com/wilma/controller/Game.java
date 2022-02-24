@@ -3,6 +3,7 @@ package com.wilma.controller;
 import com.wilma.cast.NonPlayableCharacter;
 import com.wilma.cast.PlayableCharacter;
 import com.wilma.cast.PlayableCharacterLoader;
+import com.wilma.jobhunt.ending.Beginning;
 import com.wilma.jobhunt.ending.Ending;
 import com.wilma.routes.RouteValidation;
 import com.wilma.routes.RouteInfo;
@@ -21,9 +22,19 @@ public class Game {
     private PlayableCharacter player;
 
     public void execute() {
+        greetUser();
         loadCharacters();
         selectCharacter();
         runGameLoop();
+    }
+
+    public void greetUser() {
+        try {
+            Beginning.beginningMessage();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        enterAnyKeyToContinue();
     }
 
     public void loadCharacters() {

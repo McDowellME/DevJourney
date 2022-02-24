@@ -81,6 +81,7 @@ class RouteData {
         childrenMap.put(26, new int[] {21});
         childrenMap.put(28, new int[] {4, 12, 32});
         childrenMap.put(29, new int[] {31, 30});
+        childrenMap.put(30, new int[] {38, 37});
         childrenMap.put(31, new int[] {4, 12, 32});
         childrenMap.put(32, new int[] {26, 14});
         childrenMap.put(34, new int[] {20, 9});
