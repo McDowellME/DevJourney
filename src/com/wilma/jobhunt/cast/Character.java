@@ -6,18 +6,12 @@ public abstract class Character {
     private String catchPhrase;
     private String textFile;
 
-    Character() {
-    }
 
     Character(int id, String name, String catchphrase, String textFile) {
         setId(id);
         setName(name);
         setCatchPhrase(catchphrase);
         setTextFile(textFile);
-    }
-
-    public String speak() {
-        return "\"" + getCatchPhrase() + "\"";
     }
 
     public abstract String introduction();

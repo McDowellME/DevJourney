@@ -4,8 +4,6 @@ public class NonPlayableCharacter extends Character {
     private String dialogue;
     private String role;
 
-    NonPlayableCharacter() {
-    }
 
     NonPlayableCharacter(int id, String name, String catchphrase, String textFile) {
         super(id, name, catchphrase, textFile);

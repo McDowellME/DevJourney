@@ -9,10 +9,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-//Using this class to store the different endings
+
 public class Ending {
 
-    //this is the ending we'll use when the user explores the glowing rock
     public static void alienMessage() throws InterruptedException {
 
         readTextFile("resources/Alien.txt");

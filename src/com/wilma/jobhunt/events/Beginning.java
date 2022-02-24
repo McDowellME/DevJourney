@@ -9,7 +9,6 @@ import java.nio.file.Path;
 
 public class Beginning {
 
-    //this is will display at the beginning of the game
     public static void beginningMessage() throws InterruptedException {
 
         readTextFile("resources/Welcome.txt");
