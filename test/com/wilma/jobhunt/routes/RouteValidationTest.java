@@ -1,9 +1,7 @@
 package com.wilma.jobhunt.routes;
 
-import com.wilma.cast.Education;
-import com.wilma.cast.PlayableCharacter;
-import com.wilma.routes.RouteNode;
-import com.wilma.routes.RouteValidation;
+import com.wilma.jobhunt.cast.Education;
+import com.wilma.jobhunt.cast.PlayableCharacter;
 import org.junit.Before;
 import org.junit.Test;
 

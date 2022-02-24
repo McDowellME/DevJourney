@@ -1,9 +1,9 @@
-package com.wilma.routes;
+package com.wilma.jobhunt.routes;
 
-import com.wilma.cast.NonPlayableCharacter;
-import com.wilma.cast.NonPlayableCharacterLoader;
-import com.wilma.cast.PlayableCharacter;
-import com.wilma.cast.PlayableCharacterLoader;
+import com.wilma.jobhunt.cast.NonPlayableCharacter;
+import com.wilma.jobhunt.cast.NonPlayableCharacterLoader;
+import com.wilma.jobhunt.cast.PlayableCharacter;
+import com.wilma.jobhunt.cast.PlayableCharacterLoader;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.wilma.cast;
+package com.wilma.jobhunt.cast;
 
 public abstract class Character {
     private int id;

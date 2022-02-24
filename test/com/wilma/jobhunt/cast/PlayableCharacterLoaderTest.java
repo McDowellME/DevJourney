@@ -1,4 +1,4 @@
-package com.wilma.cast;
+package com.wilma.jobhunt.cast;
 
 import org.junit.Test;
 
