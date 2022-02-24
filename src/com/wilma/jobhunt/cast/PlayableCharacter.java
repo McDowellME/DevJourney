@@ -26,7 +26,6 @@ public class PlayableCharacter extends Character {
     public String introduction() {
         return getName() + ": \n"
                 + "\"" + getCatchPhrase() + "\"" + "\n"
-                //+ getDescription() + "\n"
                 + "Player Attributes:" + "\n"
                 + "Education - " + getEducation() + "\n"
                 + "Charismatic - " + isCharismatic() + "\n"

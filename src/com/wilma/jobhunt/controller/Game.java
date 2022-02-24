@@ -98,23 +98,9 @@ public class Game {
             if (curNode.getId() == RESTART_NODE_ID) restartGame();
             if (curNode.getId() == QUIT_NODE_ID) exitGame();
             if (curNode.getId() == ALIEN_NODE_ID) alienEnding();
-            if (curNode.hasNPCs()) {
-
-                for (NonPlayableCharacter npc : curNode.getNPCs()) {
-                    readTextFile(npc.getTextFile());
-                    System.out.println(npc.introduction());
-                }
-                enterAnyKeyToContinue();
-            }
-            if (curNode.getRouteKey() != null) {
-                boolean passedAttrCheck =
-                        RouteValidation.decipherKey(player, curNode);
-                curNode = passedAttrCheck ?
-                        curNode.getChildren().get(1) :
-                        curNode.getChildren().get(0);
-                System.out.println(curNode.getMessage());
-                enterAnyKeyToContinue();
-            } else {
+            if (curNode.hasNPCs()) showNPCs(curNode);
+            if (curNode.getRouteKey() != null) attributeCheck(curNode);
+            else {
 
                 if (curNode.getChildren().size() == 1) {
                     System.out.println("\n" + curNode.displayChoice());
@@ -143,6 +129,24 @@ public class Game {
                 }
             }
         }
+    }
+
+    private void attributeCheck(RouteNode node) {
+        boolean passedAttrCheck =
+                RouteValidation.decipherKey(player, node);
+        node = passedAttrCheck ?
+                node.getChildren().get(1) :
+                node.getChildren().get(0);
+        System.out.println(node.getMessage());
+        enterAnyKeyToContinue();
+    }
+
+    private void showNPCs(RouteNode node) {
+        for (NonPlayableCharacter npc : node.getNPCs()) {
+            readTextFile(npc.getTextFile());
+            System.out.println(npc.introduction());
+        }
+        enterAnyKeyToContinue();
     }
 
     private static void restartGame() {
