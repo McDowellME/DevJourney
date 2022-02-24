@@ -1,6 +1,6 @@
 package com.wilma.jobhunt.cast;
 
-public class NonPlayableCharacter extends Character{
+public class NonPlayableCharacter extends Character {
     private String dialogue;
     private String role;
 
