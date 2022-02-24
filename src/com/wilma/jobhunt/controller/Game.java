@@ -108,22 +108,12 @@ public class Game {
                 System.out.println(curNode.getMessage());
                 enterAnyKeyToContinue();
             } else {
-
                 if (curNode.getChildren().size() == 1) {
                     System.out.println("\n" + curNode.displayChoice());
                     enterAnyKeyToContinue();
                     curNode = curNode.getChildren().get(0);
                 } else {
-                    System.out.println("Please choose from the options below:\n");
-                    List<String> routeChoices = curNode.displayRouteChoices();
-                    int len = routeChoices.size();
-
-                    for (int i = 0; i < len; i++) {
-                        if (i != 0) System.out.print("\t");
-                        System.out.print("[" + i + "] " + routeChoices.get(i) + "\t");
-                        if (i != len - 1) System.out.print("|");
-                    }
-                    System.out.println();
+                    displayAllChoices(curNode);
                     String input = scanner.nextLine();
                     System.out.println();
                     Console.clear();
@@ -136,6 +126,19 @@ public class Game {
                 }
             }
         }
+    }
+
+    private void displayAllChoices(RouteNode node) {
+        System.out.println("Please choose from the options below:\n");
+        List<String> routeChoices = node.displayRouteChoices();
+        int len = routeChoices.size();
+
+        for (int i = 0; i < len; i++) {
+            if (i != 0) System.out.print("\t");
+            System.out.print("[" + i + "] " + routeChoices.get(i) + "\t");
+            if (i != len - 1) System.out.print("|");
+        }
+        System.out.println();
     }
 
     private void spawnNPCs(RouteNode node) {
