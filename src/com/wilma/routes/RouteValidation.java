@@ -9,11 +9,12 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public class RouteValidation {
-    private static final Map<String, BiFunction<Integer, Integer, Boolean>> ops =
+    private static final Map<String,BiFunction<Integer,Integer,Boolean>> ops =
             Map.of("<", (a, b) -> a < b, ">", (a, b) -> a > b,
                     "<=", (a, b) -> (a <= b), ">=", (a, b) -> a >= b);
-    private static final Map<String, Education> educationMap =
-            Map.of("C", Education.COLLEGE_DEGREE, "B", Education.BOOTCAMP, "S", Education.SELF_TAUGHT);
+    private static final Map<String,Education> educationMap =
+            Map.of("C", Education.COLLEGE_DEGREE, "B", Education.BOOTCAMP,
+                    "S", Education.SELF_TAUGHT);
 
     public static boolean decipherKey(PlayableCharacter character, RouteNode node) {
         String routeKey = node.getRouteKey();
