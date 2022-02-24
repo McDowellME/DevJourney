@@ -16,9 +16,7 @@ import com.apps.util.Console;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -40,7 +38,7 @@ public class Game {
         runGameLoop();
     }
 
-    public void greetUser() {
+    private void greetUser() {
         try {
             Beginning.beginningMessage();
         } catch (InterruptedException e) {
@@ -49,7 +47,7 @@ public class Game {
         enterAnyKeyToContinue();
     }
 
-    public void loadCharacters() {
+    private void loadCharacters() {
         PlayableCharacterLoader pcl =
                 new PlayableCharacterLoader(PLCHAR_FILE_PATH);
         try {
@@ -59,7 +57,7 @@ public class Game {
         }
     }
 
-    public static void readTextFile(String resourceFilePath) {
+    private static void readTextFile(String resourceFilePath) {
         try {
             String image = Files.readString(Path.of(resourceFilePath));
             System.out.println(image);
