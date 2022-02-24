@@ -2,7 +2,6 @@ package com.wilma.jobhunt.ending;
 
 import com.apps.util.Console;
 
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
