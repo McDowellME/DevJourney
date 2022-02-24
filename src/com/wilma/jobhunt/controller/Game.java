@@ -3,6 +3,7 @@ package com.wilma.jobhunt.controller;
 import com.wilma.jobhunt.cast.NonPlayableCharacter;
 import com.wilma.jobhunt.cast.PlayableCharacter;
 import com.wilma.jobhunt.cast.PlayableCharacterLoader;
+import com.wilma.jobhunt.client.Main;
 import com.wilma.jobhunt.ending.Beginning;
 import com.wilma.jobhunt.ending.Ending;
 import com.wilma.jobhunt.routes.RouteValidation;
@@ -21,6 +22,9 @@ public class Game {
     private final Scanner scanner = new Scanner(System.in);
     private List<PlayableCharacter> pcList = routeInfo.pcList;
     private PlayableCharacter player;
+    private static final int RESTART_NODE_ID = 37;
+    private static final int QUIT_NODE_ID = 38;
+    private static final int ALIEN_NODE_ID = 21;
 
     public void execute() {
         greetUser();
@@ -59,37 +63,30 @@ public class Game {
     }
 
     private void selectCharacter() {
-        showCharactersAndAttributes();
-        System.out.println("Choose your character:");
-
-        while (true) {
-            int characterIdx = 0;
-
-            for (PlayableCharacter character : pcList) {
-                System.out.print("[" + characterIdx + "] " + character.getName() + "\t");
-                characterIdx++;
-            }
-            System.out.println();
-            String input = scanner.nextLine();
-
-            if (isValidInput(input, pcList.size())) {
-                player = pcList.get(Integer.parseInt(input));
-                break;
-            } else {
-                System.out.println();
-                printInvalidInputMsg(pcList.size());
-            }
-        }
-    }
-
-    private void showCharactersAndAttributes() {
         int characterIdx = 0;
 
-        for (PlayableCharacter character : pcList) {
-            readTextFile(character.getTextFile());
-            System.out.println();
-            System.out.println("[" + characterIdx + "] " + character.introduction() + "\n");
-            characterIdx++;
+        while (true) {
+            for (PlayableCharacter character : pcList) {
+                readTextFile(character.getTextFile());
+                System.out.println();
+                System.out.println("[" + characterIdx + "] " + character.introduction() + "\n");
+                characterIdx++;
+                int cIdx = 0;
+                System.out.println("Choose your character or enter any key to continue:");
+
+                for (PlayableCharacter c : pcList) {
+                    System.out.print("[" + cIdx + "] " + c.getName() + "\t");
+                    cIdx++;
+                }
+                System.out.println();
+                String input = scanner.nextLine();
+                Console.clear();
+                if (isValidInput(input, pcList.size())) {
+                    player = pcList.get(Integer.parseInt(input));
+                    return;
+                }
+            }
+            characterIdx = 0;
         }
     }
 
@@ -97,15 +94,15 @@ public class Game {
         RouteNode curNode = routeInfo.getStartNode();
 
         while (true) {
-            if (curNode.getId() == 38) return;
-            if (curNode.getId() == 21) {
+            if (curNode.getId() == RESTART_NODE_ID) restart();
+            if (curNode.getId() == QUIT_NODE_ID) System.exit(0);
+            if (curNode.getId() == ALIEN_NODE_ID) {
                 try {
                     Ending.alienMessage();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 enterAnyKeyToContinue();
-
             }
             if (curNode.hasNPCs()) {
 
@@ -124,6 +121,7 @@ public class Game {
                 System.out.println(curNode.getMessage());
                 enterAnyKeyToContinue();
             } else {
+
                 if (curNode.getChildren().size() == 1) {
                     System.out.println("\n" + curNode.displayChoice());
                     enterAnyKeyToContinue();
@@ -153,12 +151,15 @@ public class Game {
         }
     }
 
+    private static void restart() {
+        String[] args = new String[0];
+        Main.main(args);
+    }
+
     private void enterAnyKeyToContinue() {
         System.out.println("\nEnter any key to continue:");
         scanner.nextLine();
-        System.out.println();
         Console.clear();
-
     }
 
     private static boolean isValidInput(String input, int numChoices) {
