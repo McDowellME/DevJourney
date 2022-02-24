@@ -6,6 +6,8 @@ import com.wilma.jobhunt.cast.PlayableCharacterLoader;
 import com.wilma.jobhunt.client.Main;
 import com.wilma.jobhunt.events.Beginning;
 import com.wilma.jobhunt.events.Ending;
+import com.wilma.jobhunt.events.Fail;
+import com.wilma.jobhunt.events.Win;
 import com.wilma.jobhunt.routes.RouteValidation;
 import com.wilma.jobhunt.routes.RouteInfo;
 import com.wilma.jobhunt.routes.RouteNode;
@@ -14,7 +16,9 @@ import com.apps.util.Console;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -26,6 +30,8 @@ public class Game {
     private static final int RESTART_NODE_ID = 37;
     private static final int QUIT_NODE_ID = 38;
     private static final int ALIEN_NODE_ID = 21;
+    private static final int SUCCESS_NODE_ID = 29;
+    private static final int FAILURE_NODE_ID = 28;
 
     public void execute() {
         greetUser();
@@ -91,6 +97,7 @@ public class Game {
         }
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     private void runGameLoop() {
         RouteNode curNode = routeInfo.getStartNode();
 
@@ -98,6 +105,8 @@ public class Game {
             if (curNode.getId() == RESTART_NODE_ID) restartGame();
             if (curNode.getId() == QUIT_NODE_ID) exitGame();
             if (curNode.getId() == ALIEN_NODE_ID) alienEnding();
+            if (curNode.getId() == SUCCESS_NODE_ID) successEnding();
+            if (curNode.getId() == FAILURE_NODE_ID) failureEnding();
             if (curNode.hasNPCs()) spawnNPCs(curNode);
             if (curNode.getRouteKey() != null) {
                 boolean passedAttrCheck =
@@ -156,6 +165,24 @@ public class Game {
 
     private static void exitGame() {
         System.exit(0);
+    }
+
+    private void successEnding() {
+        try {
+            Win.winMessage();
+        } catch (InterruptedException e) {
+            System.out.println("Congratulations!");
+        }
+        enterAnyKeyToContinue();
+    }
+
+    private void failureEnding() {
+        try {
+            Fail.failMessage();
+        } catch (InterruptedException e) {
+            System.out.println("You did not accept the offer");
+        }
+        enterAnyKeyToContinue();
     }
 
     private void alienEnding() {

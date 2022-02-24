@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-class Fail {
+public class Fail {
 
     public static void failMessage() throws InterruptedException {
 
@@ -19,7 +19,7 @@ class Fail {
                     new File("resources/Fail.wav")));
             Thread.sleep(800);
             clip.start();
-            Thread.sleep(6000);
+            Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
         }
