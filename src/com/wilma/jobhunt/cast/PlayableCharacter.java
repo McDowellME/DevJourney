@@ -6,8 +6,6 @@ public class PlayableCharacter extends Character {
     private int luck;
     private int skill;
 
-    PlayableCharacter() {
-    }
 
     PlayableCharacter(int id, String name, String catchphrase, String textFile) {
         super(id, name, catchphrase, textFile);
