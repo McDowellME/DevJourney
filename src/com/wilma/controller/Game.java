@@ -3,6 +3,7 @@ package com.wilma.controller;
 import com.wilma.cast.NonPlayableCharacter;
 import com.wilma.cast.PlayableCharacter;
 import com.wilma.cast.PlayableCharacterLoader;
+import com.wilma.jobhunt.ending.Ending;
 import com.wilma.routes.RouteValidation;
 import com.wilma.routes.RouteInfo;
 import com.wilma.routes.RouteNode;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -52,6 +52,7 @@ public class Game {
 
         while (true) {
             int characterIdx = 0;
+
             for (PlayableCharacter character : pcList) {
                 System.out.print("[" + characterIdx + "] " + character.getName() + "\t");
                 characterIdx++;
@@ -67,7 +68,6 @@ public class Game {
                 printInvalidInputMsg(pcList.size());
             }
         }
-
     }
 
     private void showCharactersAndAttributes() {
@@ -86,6 +86,7 @@ public class Game {
 
         while (true) {
             if (curNode.hasNPCs()) {
+
                 for (NonPlayableCharacter npc : curNode.getNPCs()) {
                     readTextFile(npc.getTextFile());
                     System.out.println(npc.introduction());
@@ -108,6 +109,7 @@ public class Game {
                     System.out.println("Please choose from the options below:\n");
                     List<String> routeChoices = curNode.displayRouteChoices();
                     int len = routeChoices.size();
+
                     for (int i = 0; i < len; i++) {
                         if (i != 0) System.out.print("\t");
                         System.out.print("[" + i + "] " + routeChoices.get(i) + "\t");
@@ -116,6 +118,7 @@ public class Game {
                     System.out.println();
                     String input = scanner.nextLine();
                     System.out.println();
+
                     if (isValidInput(input, curNode.getChildren().size())) {
                         curNode = curNode.getChildren().get(Integer.parseInt(input));
                     } else {
