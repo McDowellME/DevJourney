@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-class Win {
+public class Win {
     public static void winMessage() throws InterruptedException {
 
         readTextFile("resources/Winner.txt");

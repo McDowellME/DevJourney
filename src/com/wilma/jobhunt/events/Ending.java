@@ -32,7 +32,6 @@ public class Ending {
         Console.clear();
         readTextFile("resources/GameOver.txt");
         Thread.sleep(1000);
-
     }
 
 
