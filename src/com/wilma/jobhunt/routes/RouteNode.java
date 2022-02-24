@@ -1,6 +1,6 @@
-package com.wilma.routes;
+package com.wilma.jobhunt.routes;
 
-import com.wilma.cast.NonPlayableCharacter;
+import com.wilma.jobhunt.cast.NonPlayableCharacter;
 
 import java.util.ArrayList;
 import java.util.List;
