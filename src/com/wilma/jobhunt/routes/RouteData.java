@@ -112,7 +112,7 @@ class RouteData {
     static {
         npcConnectionMap = new HashMap<>();
         npcConnectionMap.put(1, new int[] {13});
-        npcConnectionMap.put(3, new int[] {17, 20, 22});
+        npcConnectionMap.put(3, new int[] {15, 17, 20, 22});
     }
 
     static {
