@@ -26,10 +26,9 @@ public class NonPlayableCharacterLoader {
             String catchPhrase = tokens[3];
             String dialogue = tokens[4];
             String role = tokens[5];
-            int event = Integer.parseInt(tokens[6]);
-            String textFile = tokens[7];
+            String textFile = tokens[6];
 
-            result.put(id, new NonPlayableCharacter(id, name, catchPhrase, textFile, dialogue, role, event));
+            result.put(id, new NonPlayableCharacter(id, name, catchPhrase, textFile, dialogue, role));
         });
         return result;
     }

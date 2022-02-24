@@ -28,7 +28,6 @@ public class PlayableCharacterLoaderTest {
         assertFalse(pchar0.isCharismatic());
         assertEquals(5, pchar0.getLuck());
         assertEquals(4, pchar0.getSkill());
-        assertEquals("Lorem Ipsum", pchar0.getDescription());
 
         PlayableCharacter pchar2 = pchars.get(2);
         assertEquals(3, pchar2.getId());
@@ -39,6 +38,5 @@ public class PlayableCharacterLoaderTest {
         assertFalse(pchar2.isCharismatic());
         assertEquals(8, pchar2.getLuck());
         assertEquals(3, pchar2.getSkill());
-        assertEquals("Lorem Ipsum", pchar2.getDescription());
     }
 }

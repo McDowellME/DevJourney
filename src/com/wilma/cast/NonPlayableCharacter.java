@@ -3,7 +3,6 @@ package com.wilma.cast;
 public class NonPlayableCharacter extends Character{
     private String dialogue;
     private String role;
-    private int event;
 
     NonPlayableCharacter() {
     }
@@ -12,16 +11,17 @@ public class NonPlayableCharacter extends Character{
         super(id, name, catchphrase, textFile);
     }
 
-    NonPlayableCharacter(int id, String name, String catchphrase, String textFile, String dialogue, String role, int event) {
+    NonPlayableCharacter(int id, String name, String catchphrase, String textFile, String dialogue, String role) {
         this(id, name, catchphrase, textFile);
         setDialogue(dialogue);
         setRole(role);
-        setEvent(event);
     }
 
     @Override
     public String introduction() {
-        return "You've met " + getName() + ", " + getRole() + ".";
+        return "You've met " + getName() + ", " + getRole() + ". \n" +
+                "\"" + getCatchPhrase() + "\" \n\n" +
+                "\"" + getDialogue() + "\"";
     }
 
     public String getDialogue() {
@@ -40,19 +40,11 @@ public class NonPlayableCharacter extends Character{
         this.role = role;
     }
 
-    public int getEvent() {
-        return event;
-    }
-
-    public void setEvent(int event) {
-        this.event = event;
-    }
-
     @Override
     public String toString() {
         return getClass().getSimpleName() + ": id=" + getId() + ", name=" + getName()
                 + ", catchphrase=" + getCatchPhrase() + ", dialogue=" + getDialogue()
-                + ", role=" + getRole() + ", event=" + getEvent();
+                + ", role=" + getRole();
     }
 
 }

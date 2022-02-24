@@ -26,12 +26,12 @@ public class RouteValidationTest {
                 1, "Lyle", "catchphrase",
                 "resources/Francis.txt",
                 Education.COLLEGE_DEGREE, true,
-                2, 5, "description");
+                2, 5);
         p2 = new PlayableCharacter(
                 2, "Jay", "catchphrase",
                 "resources/Francis.txt",
                 Education.BOOTCAMP, false,
-                8, 7, "description");
+                8, 7);
 
         n1 = new RouteNode(1, "message");
         n1.setRouteKey("C");
