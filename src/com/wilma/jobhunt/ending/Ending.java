@@ -1,5 +1,8 @@
 package com.wilma.jobhunt.ending;
 
+import com.apps.util.Console;
+
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
@@ -13,7 +16,6 @@ public class Ending {
     //this is the ending we'll use when the user explores the glowing rock
     public static void alienMessage() throws InterruptedException {
 
-        readTextFile("resources/GameOver.txt");
         readTextFile("resources/Alien.txt");
 
         System.out.println("\nSilly human, you foolishly inspected the glowing rock.\nYou are now a puppet of the Glore Gax alien race....\n\n");//character name getter will be added into with this statement
@@ -28,8 +30,13 @@ public class Ending {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Thread.sleep(1000);
+        Console.clear();
+        readTextFile("resources/GameOver.txt");
+        Thread.sleep(1000);
 
     }
+
 
     private static void readTextFile(String resourceFilePath) {
         try {
